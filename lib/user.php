@@ -34,8 +34,23 @@
 		public function login($user, $passwd)
 		{
 			$stmt = DBH::$dbh->prepare("SELECT * FROM users WHERE name = ?");
-			$res = $stmt->execute(array($user));
-			
+			$stmt->execute(array($user));
+			$res = $stmt->fetchAll();
+			if(count($res)) {
+				if($res[0]['password'] == hash('sha256', $passwd)) {
+					$this->name = $res[0]['name'];
+					$this->email = $res[0]['email'];
+					$this->isLoggedIn = true;
+					$_SESSION['user'] = array(
+						'name' => $this->name,
+						'email' => $this->email
+					);
+				} else {
+					die('wrong password');
+				}
+			} else {
+				die('wrong user name');
+			}
 		}
 		
 		public function logout() {
