@@ -1,5 +1,5 @@
 <?php
-class DBHandler {
+class DBH {
 	public static $dbh = null;
 	public static function connect() {
 		global $config;
