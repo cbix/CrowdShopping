@@ -72,7 +72,13 @@
 			$stmt = DBH::$dbh->prepare("SELECT * FROM users WHERE id = ?");
 			$stmt->execute(array($id));
 			$res = $stmt->fetchAll();
-			print_r($res);
+			if(!count($res)) {
+				return false;
+			} else {
+				$this->name = $res[0]['name'];
+				$this->email = $res[0]['email'];
+				$this->isLoggedIn = false;
+			}
 		}
 
 		public function getByName($name) {
