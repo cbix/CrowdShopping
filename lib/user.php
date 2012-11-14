@@ -20,7 +20,7 @@
 					':email' => $data['email'],
 					':password' => hash('sha256', $data['password'])
 				));
-				$this->id = PDO::lastInsertId();
+				$this->id = DB::$dbh->lastInsertId();
 				$this->name = $data['name'];
 				$this->email = $data['email'];
 				$_SESSION['user']['name'] = $this->name;
