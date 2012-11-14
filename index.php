@@ -8,3 +8,5 @@ try {
 // include libraries:
 require_once("lib/base.php");
 
+// bootstrap the application:
+DB::connect();
