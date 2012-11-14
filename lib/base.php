@@ -11,5 +11,5 @@ try {
 	die("config.php not found. Set up everything in the config-sample.php and rename it to config.php!");
 }
 // bootstrap the application:
-DB::connect();
+DBH::connect();
 
