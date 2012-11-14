@@ -1,8 +1,8 @@
 <?php
 	class User
 	{
-		private $this->isLoggedIn = false;
-		private $this->name = "";
+		private $isLoggedIn = false;
+		private $name, $id, $email;
 
 		/**
 		 * construct a new user object
@@ -52,7 +52,7 @@
 			return $this->name;
 		}
 
-		public function getById($id) {
+		public function fromId($id) {
 			$stmt = DB::$dbh->prepare("SELECT * FROM users WHERE id = ?");
 			$stmt->execute(array($id));
 			$res = $stmt->fetchAll();
@@ -79,7 +79,7 @@
 
 		public static function getById($id) {
 			$user = new User();
-			$user->getById($id);
+			$user->fromId($id);
 			$user->setLoggedIn(false);
 			return $user;
 		}

@@ -2,6 +2,7 @@
 // include everything:
 require_once("HTML/Template/IT.php");
 require_once("db.php");
+require_once("user.php");
 try {
 	// include config:
 	require_once("config.php");
