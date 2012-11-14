@@ -1,8 +1,8 @@
 <?php
 session_start();
 // include everything:
-require_once "lib/IT/IT.php";
-require_once("db.php");
+//require_once "lib/IT/IT.php";
+require_once("dbh.php");
 require_once("user.php");
 try {
 	// include config:

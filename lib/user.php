@@ -14,13 +14,13 @@
 
 		public function register($data) {
 			try {
-				$stmt = DB::$dbh->prepare("INSERT INTO users (name, email, password) VALUES (:name, :email, :password)");
+				$stmt = DBH::$dbh->prepare("INSERT INTO users (name, email, password) VALUES (:name, :email, :password)");
 				$stmt->execute(array(
 					':name' => $data['name'],
 					':email' => $data['email'],
 					':password' => hash('sha256', $data['password'])
 				));
-				$this->id = DB::$dbh->lastInsertId();
+				$this->id = DBH::$dbh->lastInsertId();
 				$this->name = $data['name'];
 				$this->email = $data['email'];
 				$_SESSION['user']['name'] = $this->name;
@@ -33,8 +33,9 @@
 		
 		public function login($user, $passwd)
 		{
-			$stmt = DB::$dbh->prepare("SELECT * FROM users WHERE name = ?");
+			$stmt = DBH::$dbh->prepare("SELECT * FROM users WHERE name = ?");
 			$res = $stmt->execute(array($user));
+			
 		}
 		
 		public function logout() {
@@ -53,14 +54,14 @@
 		}
 
 		public function fromId($id) {
-			$stmt = DB::$dbh->prepare("SELECT * FROM users WHERE id = ?");
+			$stmt = DBH::$dbh->prepare("SELECT * FROM users WHERE id = ?");
 			$stmt->execute(array($id));
 			$res = $stmt->fetchAll();
 			print_r($res);
 		}
 
 		public function getByName($name) {
-			$stmt = DB::$dbh->prepare("SELECT * FROM users WHERE name = ?");
+			$stmt = DBH::$dbh->prepare("SELECT * FROM users WHERE name = ?");
 			$stmt->execute(array($name));
 			$res = $stmt->fetchAll();
 			// todo
