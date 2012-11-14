@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 14. November 2012 um 19:30
+-- Erstellungszeit: 14. November 2012 um 19:56
 -- Server Version: 5.1.44
 -- PHP-Version: 5.3.1
 
@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
 
 CREATE TABLE IF NOT EXISTS `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `question_id` int(11) NOT NULL,
   `text` text COLLATE utf8_bin NOT NULL,
   `user_id` int(11) NOT NULL,
   `rank` int(11) NOT NULL,
