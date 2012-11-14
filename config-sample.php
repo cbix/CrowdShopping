@@ -1,8 +1,7 @@
 <?php
 // rename this to config.php
 $dbconfig = array(
-	'host' => 'localhost',
+	'dsn' => 'mysql:host=localhost;dbname=crowdshopping',
 	'user' => 'user',
-	'pass' => 'pass',
-	'database' => 'crowdshopping'
+	'pass' => 'pass'
 );
