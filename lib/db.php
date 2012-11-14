@@ -1,10 +1,10 @@
 <?php
 class DB {
-	public static $dbh;
+	public static $dbh = null;
 	public static function connect() {
 		try {
-			if($this->dbh == null) {
-				$this->dbh = new PDO(
+			if(self::$dbh == null) {
+				self::$dbh = new PDO(
 					$config['db']['dsn'],
 					$config['db']['user'],
 					$config['db']['pass'],
