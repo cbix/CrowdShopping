@@ -2,6 +2,7 @@
 class DB {
 	public static $dbh = null;
 	public static function connect() {
+		global $config;
 		try {
 			if(self::$dbh == null) {
 				self::$dbh = new PDO(
