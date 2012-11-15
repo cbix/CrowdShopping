@@ -9,22 +9,20 @@
 		public $category;
 		public $tags=array();
 		public $createTime;
-		public $modifyTime;
-		public $answers;
 		
-		function __construct__($id)
+		function __construct($id)
 		{
-			DBH::$dbh->prepare("SELECT questions.*, categories.name
-										FROM questions, categories
-										WHERE id == :question_id && question.category == category.id");
-			DBH::$dbh->bindParam(':question_id', $id);
+			$sth = DBH::$dbh->prepare("SELECT questions.*, categories.name
+													  FROM questions, categories
+													  WHERE questions.id = :question_id && questions.category = categories.id");
+			$sth->bindParam(':question_id', $id);
 										
-			DBH::$dbh->execute();
-			$result = DBH::$dbh->fetchAssoc();
+			$sth->execute();
+			$result = $sth->fetch(PDO::FETCH_ASSOC);
 			
 			if(!$result)
 			{
-				__destruct__();
+				$this->__destruct__();
 				header('Location: /404.php');
 			}
 			
@@ -32,19 +30,19 @@
 			$this->title				= $result['title'];
 			$this->category		= $result['category'];
 			$this->description  = $result['description'];
-			$this->createTime	= $result['createTime'];
-			$this->editTime 		= $result['editTime'];
-			$this->user			= User::getUserById($result['user']);
+			$this->createTime	= $result['create_time'];
+			$this->user			= User::getById($result['user_id']);
 			
-			DBH::$dbh->prepare("SELECT tags.name
-										FROM tags
-										WHERE tags.id == question_tags.tag_id && question_tags.question_id == :question_id");
+			$sth = DBH::$dbh->prepare("SELECT tags.name
+													  FROM tags, question_tags
+													  WHERE tags.id = question_tags.tag_id && question_tags.question_id = :question_id"
+													 );
 										
-			DBH::$dbh->bindParam(':question_id', $this->id);
+			$sth->bindParam(':question_id', $this->id);
 			
-			DBH::$dbh->execute();
+			$sth->execute();
 			
-			$result = DBH::$dbh->fetchAll();
+			$result = $sth->fetchAll();
 			
 			foreach($result as $row)
 			{
@@ -85,6 +83,49 @@
 		public function getCreateTime()
 		{
 			return $this->createTime;
+		}
+		
+		public function getHighRatedComments()
+		{
+			$highRatedComment = array();
+			$sth = DBH::$dbh->prepare("SELECT 
+													  FROM comment.id
+													  WHERE comment.question_id = :question_id
+													 ORDER BY comment,rank DESC
+													 LIMIT 3
+													");
+										
+			$sth->bindParam(':question_id', $this->id);
+			
+			$sth->execute();
+			
+			while($result = $sth->fetch(PDO::FETCH_ASSOC))
+			{
+				$highRatedComment[] = new Comment($result['id']);
+			}
+			
+			return $highRatedComment;
+		}
+		
+		public function getComments()
+		{
+			$comments = array();
+			$sth = DBH::$dbh->prepare("SELECT 
+													  FROM comment.id
+													  WHERE comment.question_id = :question_id
+													  ORDER BY comment.createTime ASC
+													");
+										
+			$sth->bindParam(':question_id', $this->id);
+			
+			$sth->execute();
+			
+			while($result = $sth->fetch(PDO::FETCH_ASSOC))
+			{
+				$comments[] = new Comment($result['id']);
+			}
+			
+			return $comments;
 		}
 	}
 ?>

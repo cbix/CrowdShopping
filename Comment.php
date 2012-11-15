@@ -1,5 +1,5 @@
 <?php
-	class Comments
+	class Comment
 	{
 		public $this->id;
 		public $this->question_id;
@@ -9,11 +9,11 @@
 		public $this->editTime;
 		public $this->rank;
 		
-		__construct__($id)
+		__construct($id)
 		{
 			DBH::dbh->prepare("SELECT comments.*, categories.name
 										FROM comments, categories
-										WHERE id == :comment_id && comment.category == category.id");
+										WHERE id = :comment_id && comment.category = category.id");
 			DBH::dbh->bindParam(':comment_id', $id);
 										
 			DBH::dbh->execute();
@@ -21,7 +21,7 @@
 			
 			if(!$result)
 			{
-				__destruct__();
+				$this->__destruct__();
 				header('Location: /404.php');
 			}
 			
@@ -30,7 +30,7 @@
 			$this->text  			= $result['text'];
 			$this->createTime	= $result['createTime'];
 			$this->editTime 		= $result['editTime'];
-			$this->user			= User::getUserById($result['user']);
+			$this->user			= User::getById($result['user']);
 			$this->rank			= result['rank'];
 		}
 		
@@ -63,25 +63,27 @@
 		{
 			$this->text = $text;
 			
-			DBH::dbh->prepare("UPDATE answers
-										SET text=:text, edit_time=:edit_time
-										WHERE id==:id");
+			$sth = DBH::dbh->prepare("UPDATE comment
+													SET text=:text, edit_time=:edit_time
+													WHERE id==:id"
+												  );
 							
-			DBH::dbh->bindParam('id', $this->id);
-			DBH::dbh->bindParam('text', $text);
-			DBH::dbh->bindParam('edit_time', $time());
+			$sth->bindParam('id', $this->id);
+			$sth->bindParam('text', $text);
+			$sth->bindParam('edit_time', $time());
 		}
 		
 		public incRank()
 		{
 			$this.rank++;
 			
-			DBH::dbh->prepare("UPDATE answers
-										SET rank=:rank
-										WHERE id==:id");
+			$sth = DBH::dbh->prepare("UPDATE answers
+													SET rank=:rank
+													WHERE id==:id");
 							
-			DBH::dbh->bindParam('id', $this->id);
-			DBH::dbh->bindParam('rank', $this->rank);
+			$sth->bindParam('id', $this->id);
+			$sth->bindParam('rank', $this->rank);
+			$sth->execute();
 		}
 		
 		public decRank()
@@ -90,12 +92,13 @@
 			{
 				$this.rank--;
 				
-				DBH::dbh->prepare("UPDATE answers
-											SET rank=:rank
-											WHERE id==:id");
+				$sth = DBH::dbh->prepare("UPDATE answers
+														SET rank=:rank
+														WHERE id==:id");
 								
-				DBH::dbh->bindParam('id', $this->id);
-				DBH::dbh->bindParam('rank', $this->rank);
+				$sth->bindParam('id', $this->id);
+				$sth->bindParam('rank', $this->rank);
+				$sth->execute();
 			}
 		}
 		
