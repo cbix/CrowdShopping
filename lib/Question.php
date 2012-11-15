@@ -1,5 +1,5 @@
 <?php
-	require_once "/lib/base.php";
+	require_once "lib/base.php";
 	class Question
 	{
 		public $id;
@@ -9,6 +9,22 @@
 		public $category;
 		public $tags=array();
 		public $createTime;
+		
+		static function getLatestQuestions()
+		{
+			$questions = array();
+			$sth = DBH::$dbh->prepare("SELECT questions.id
+													  FROM questions
+													  ORDER BY questions.create_time DESC
+													  LIMIT 5");
+										
+			$sth->execute();
+			while($result = $sth->fetch(PDO::FETCH_ASSOC))
+			{
+				$questions[] = new Question($result['id']);
+			}
+			return $questions;
+		}
 		
 		function __construct($id)
 		{

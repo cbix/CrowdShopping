@@ -4,6 +4,7 @@ session_start();
 require_once "lib/IT/IT.php";
 require_once("dbh.php");
 require_once("user.php");
+require_once("Question.php");
 try {
 	// include config:
 	require_once("config.php");
