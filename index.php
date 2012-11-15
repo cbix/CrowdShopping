@@ -1,30 +1,33 @@
 <?php
 require_once("lib/base.php");
+error_reporting(E_ERROR);
 $tpl = new HTML_Template_IT("./tpl");
-$tpl->loadTemplatefile("index.html", true, true);
-	$tpl->setCurrentBlock("content");
-		$tpl -> loadTemplateFile("latest_questions.html");
+$tpl1 = new HTML_Template_IT("./tpl");
+$tpl->loadTemplatefile("index.html", true, false);
+	$tpl->touchBlock("head");
+	//$tpl->show();
+		$tpl1 -> loadTemplateFile("latest_questions.html");
 		$questions = Question::getLatestQuestions();
 		foreach($questions as $question)
 		{
-			$tpl->setCurrentBlock('latest_question');
-				$tpl->setVariable("TITLE", $question->getTitle());
-				$tpl->setVariable("TEXT", $question->getDescription());
-			$tpl->parseCurrentBlock("latest_question");
+			$tpl1->setCurrentBlock('latest_question');
+				$tpl1->setVariable("TITLE", $question->getTitle());
+				$tpl1->setVariable("TEXT", $question->getDescription());
+			$tpl1->parseCurrentBlock("latest_question");
 		}
-		$tpl->parse();
-		$tpl->show();
-	$tpl->loadTemplateFile("index.html");
-	$tpl->setCurrentBlock("content");
-	$tpl->parseCurrentBlock("content");
-		$bestUsers = User::getFourBestUser();
+		$tpl1->parse();
+		
+	//$tpl->loadTemplateFile("index.html");
+	$bestUsers = User::getFourBestUsers();
 		foreach($bestUsers as $user)
 		{
 			$tpl->setCurrentBlock("best_users");
 				$tpl->setVariable("USERNAME", $user->getName());
-				$tpl->setVariable("GRADE", $user->getRank());
+				$tpl->setVariable("GRADE", $user->rank());
 			$tpl->parseCurrentBlock("best_users");
-		}	
-
+		}
+	$tpl->touchBlock("footer");
+	
 $tpl->show();
+$tpl1->show();
 ?>
