@@ -1,0 +1,41 @@
+@import "http://yui.yahooapis.com/2.9.0/build/reset/reset-min.css";
+
+body {
+  text-align: center;
+  background: #eee;
+  font: 15px/100% Arial, Helvetica, sans-serif;
+}
+
+#container {
+  text-align: left;
+  margin: 0px auto;
+  width: 400px;
+}
+
+#container header, #container footer {
+  float: left;
+  text-align: center;
+  width: 400px;
+}
+
+#container header h1 {
+  text-align: center;
+}
+
+#container #register-form {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 360px;
+  float: left;
+}
+
+#container #register-form input[type=text],
+#container #register-form input[type=password] {
+  float: left;
+  width: 348px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  font-size: 20px;
+  margin: 0px 0px 10px 0px;
+}
