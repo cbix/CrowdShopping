@@ -20,6 +20,7 @@
 			<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
 			<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
 			<link rel="stylesheet" href="/resources/demos/style.css" />
+			<script src="assets/js/bball.js"></script>
 			<script>/*
 			$(function() {
 				$( ".progBar" ).progressbar({
@@ -52,6 +53,10 @@
 <!-- BEGIN content -->
         <div class="main-container">
             <div class="main wrapper clearfix">
+				<div id="game">
+					<em>This app is still in <span style="text-decoration:line-through;">beta<strong>alpha</strong></span> pre-alpha and nearly unusable, but in meanwhile you can play around with my html5 basketball:</em>
+					<canvas id="world" style="margin:0; padding:0; box-shadow:0 1em 1em #AAA;"></canvas>
+				</div>
                 <aside>
                     <h2>Best users</h2>
 					<!-- END content -->
@@ -84,7 +89,22 @@
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
             g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
+	</script>
+	  <script type="text/javascript">
+		window.onload = function() {
+			canvas = document.getElementById('world');
+			canvas.width = window.innerWidth / 2;
+			canvas.height = window.innerHeight / 2;
+			game = new BBall(canvas);
+			window.onresize = function() {
+				canvas.width = window.innerWidth / 2;
+				canvas.height = window.innerHeight / 2;
+				game.resize();
+			};
+			window.onresize();
+		};
+	  </script>
+
     </body>
 </html>
 <!-- END footer -->
