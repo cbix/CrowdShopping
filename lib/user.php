@@ -53,7 +53,7 @@
 			}
 		}
 		
-		public function logout() {
+		public static function logout() {
 			session_write_close();
 			return true;
 		}
