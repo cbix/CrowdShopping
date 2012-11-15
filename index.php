@@ -6,7 +6,7 @@ $tpl1 = new HTML_Template_IT("./tpl");
 $tpl->loadTemplatefile("index.html", true, false);
 	$tpl->touchBlock("head");
 	//$tpl->show();
-		$tpl1 -> loadTemplateFile("latest_questions.html");
+		$tpl1->loadTemplateFile("latest_questions.html");
 		$questions = Question::getLatestQuestions();
 		foreach($questions as $question)
 		{
@@ -23,7 +23,10 @@ $tpl->loadTemplatefile("index.html", true, false);
 		{
 			$tpl->setCurrentBlock("best_users");
 				$tpl->setVariable("USERNAME", $user->getName());
-				$tpl->setVariable("GRADE", $user->rank());
+				if(!isset($bestRank)) {
+					$bestRank = $user->rank;
+				}
+				$tpl->setVariable("GRADE", 100 * $user->rank / $bestRank);
 			$tpl->parseCurrentBlock("best_users");
 		}
 	$tpl->touchBlock("footer");
