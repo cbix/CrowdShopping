@@ -13,7 +13,21 @@
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
 
-        <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+       <meta charset="utf-8" />
+			<title>jQuery UI Progressbar - Resizable</title>
+			<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+			<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+			<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+			<link rel="stylesheet" href="/resources/demos/style.css" />
+			<script>/*
+			$(function() {
+				$( ".progBar" ).progressbar({
+					value: 37
+				});
+				//$( "#progressbarWrapper" ).resizable();
+			});*/
+			</script>
+	   
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -22,12 +36,10 @@
 
         <div class="header-container">
             <header class="wrapper clearfix">
-                <h1 class="title">h1.title</h1>
+                <h1 class="title">Easy Shopping</h1>
                 <nav>
                     <ul>
-                        <li><a href="#">nav ul li a</a></li>
-                        <li><a href="#">nav ul li a</a></li>
-                        <li><a href="#">nav ul li a</a></li>
+                        <li><a href="about.html">About us</a></li>
                     </ul>
                 </nav>
             </header>
@@ -38,27 +50,45 @@
 
                 <article>
                     <header>
-                        <h1>article header h1</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec.</p>
+                        <h1>Latest Questions</h1>                       
                     </header>
                     <section>
-                        <h2>article section h2</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
+                        <h1><a href="#">Clothing Problem?</a></h1>
+                        <p>I am looking for a fashionable Winter Jacket.</p>
                     </section>
                     <section>
-                        <h2>article section h2</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
+                        <h1><a href="#">Looking for cheep jacket in Aachen?</a></h1>
+                        <p>I live in Aachen and I need a fall normal brown jacket. Can any one help?</p>
                     </section>
-                    <footer>
-                        <h3>article footer h3</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor.</p>
-                    </footer>
+                    <section>
+                        <h1><a href="#">Nice leggings for party!</a></h1>
+                        <p>I search for some party leggings light grey. Any Idea where I can find it.</p>
+                    </section>	                 
+                     <p><a href="#">More..<a href="#"></p>
+                    
                 </article>
 
                 <aside>
-                    <h3>aside</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices.</p>
-                </aside>
+                    <h2>Best users</h2>
+                        <h4>Tina </h4><div  style="height: 20px;" class="ui-widget-default progBarWrap">
+									  <div style="height: 100%; width: 50%;" class="progBar"></div>
+									  </div>   
+                    <section>
+                        <h4>Jan</h4><div  style="height: 20px;" class="ui-widget-default progBarWrap">
+									  <div  style="height: 100%; width: 40%;" class="progBar"></div>
+									  </div>
+                    </section>
+                    <section>
+                        <h4>Florian</h4><div  style="height: 20px;" class="ui-widget-default progBarWrap">
+									  <div  style="height: 100%; width: 80%;" class="progBar"></div>
+									  </div>
+                    </section>
+                    <section>
+                        <h4>David</h4><div  style="height: 20px;" class="ui-widget-default progBarWrap">
+									  <div  style="height: 100%; width: 30%;" class="progBar"></div>
+									  </div>
+                    </section>	      
+				</aside>
 
             </div> <!-- #main -->
         </div> <!-- #main-container -->

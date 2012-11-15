@@ -16,12 +16,12 @@ body {
 }
 
 ::-moz-selection {
-    background: #b3d4fc;
+    background: #FFEBCD;
     text-shadow: none;
 }
 
 ::selection {
-    background: #b3d4fc;
+    background: #FFEBCD;
     text-shadow: none;
 }
 
@@ -74,18 +74,18 @@ body {
    =================== */
 
 .header-container {
-    border-bottom: 20px solid #e44d26;
+    border-bottom: 20px solid #191970;
 }
 
 .footer-container,
 .main aside {
-    border-top: 20px solid #e44d26;
+    border-top: 20px solid #191970;
 }
 
 .header-container,
 .footer-container,
 .main aside {
-    background: #f16529;
+    background: #191970;
 }
 
 .title {
@@ -111,7 +111,7 @@ nav a {
     font-weight: bold;
 
     color: white;
-    background: #e44d26;
+    background: #191970;
 }
 
 nav a:hover,
@@ -132,7 +132,7 @@ nav a:hover {
 }
 
 .main article h1 {
-    font-size: 2em;
+    font-size: 1em;
 }
 
 .main aside {
@@ -157,8 +157,15 @@ nav a:hover {
    Author's custom styles
    ========================================================================== */
 
+.progBarWrap {
+    margin: 1px;
+    border-radius: 2px 2px;
+}
 
-
+.progBar {
+    padding: 0px;
+    background-color: green;
+}
 
 
 
