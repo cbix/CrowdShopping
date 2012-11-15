@@ -2,7 +2,7 @@
 	class User
 	{
 		private $isLoggedIn = false;
-		private $name, $id, $email;
+		public $id, $name, $email, $rank;
 
 		/**
 		 * construct a new user object
@@ -28,6 +28,26 @@
 			} catch(Exception $e) {
 				// put error template code here
 				die("error creating new user: " . $e->getMessage());
+			}
+		}
+
+		public static function getFourBestUsers() {
+			try {
+				$users = array();
+				$stmt = DBH::$dbh->prepare("SELECT u.id, u.name, u.email, SUM(c.rank) as rank FROM comments AS c LEFT JOIN users AS u ON c.user_id = u.id GROUP BY c.user_id ORDER BY rank DESC LIMIT 4");
+				$stmt->execute();
+				$res = $stmt->fetchAll();
+				foreach($res as $u) {
+					$user = new User();
+					$user->name = $u['name'];
+					$user->email = $u['email'];
+					$user->rank = $u['rank'];
+					$user->id = $u['id'];
+					$users[] = $user;
+				}
+				return $users;
+			} catch(Exception $e) {
+				return array();
 			}
 		}
 		
